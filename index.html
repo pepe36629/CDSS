@@ -1,0 +1,1111 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ตัวช่วยเลือก Dressing แผล</title>
+<style>
+:root{--bg:#f1f5f6;--sf:#fff;--ink:#12262d;--mu:#5b6f76;--ln:#d3dde0;--pri:#0b6a6a;--pt:#fff;--ps:#dff0ee;--r:#c0392b;--rs:#fbe6e1;--w:#8a5a00;--ws:#fff0cf;--sh:0 10px 30px rgba(10,40,48,.22)}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1a1e;--sf:#17262b;--ink:#e6f0f2;--mu:#93a9b0;--ln:#2b3f46;--pri:#4cc2bb;--pt:#062321;--ps:#17393a;--r:#ff9a85;--rs:#3b1f1a;--w:#ffd27a;--ws:#3a2d0f;--sh:0 10px 30px rgba(0,0,0,.6)}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans Thai",system-ui,sans-serif;padding-bottom:260px}
+main{max-width:860px;margin:0 auto;padding:20px 16px}h1{font-size:1.5rem;margin:0 0 4px}h2{font-size:1.05rem;margin:0 0 4px}
+.sub{color:var(--mu);margin:0 0 18px;font-size:.92rem}.bar{display:flex;gap:10px;align-items:center;margin-bottom:14px}
+.btn{font:inherit;font-size:.85rem;color:var(--ink);background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:6px 12px;cursor:pointer}
+.btn:focus-visible,.chip:focus-visible,.hb:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+.home{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:24px}
+.hb{min-height:130px;font:inherit;text-align:left;color:var(--ink);background:var(--sf);border:2px solid var(--ln);border-radius:14px;padding:18px;cursor:pointer}.hb:hover{border-color:var(--pri)}
+.hb b{display:block;font-size:2rem}.hb span{color:var(--mu);font-size:.9rem}
+fieldset{border:0;padding:0;margin:0 0 20px}legend{font-weight:600;padding:0;margin-bottom:2px}.d{color:var(--mu);font-size:.84rem;margin-bottom:8px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:8px}
+.chip{display:flex;gap:10px;text-align:left;font:inherit;color:var(--ink);background:var(--sf);border:1.5px solid var(--ln);border-radius:10px;padding:9px 12px;cursor:pointer}
+.chip small{display:block;color:var(--mu);font-size:.78rem}.bx{flex:none;width:20px;height:20px;margin-top:2px;border:2px solid var(--mu);border-radius:5px;display:grid;place-items:center;font-size:12px;color:transparent}
+.chip[aria-pressed=true]{background:var(--ps);border-color:var(--pri)}.chip[aria-pressed=true] .bx{background:var(--pri);border-color:var(--pri);color:var(--pt)}
+.prof{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:14px;margin-bottom:20px}.prof label{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:.92rem}
+.seg{display:flex;gap:8px;margin-bottom:8px}.seg .chip{flex:1;justify-content:center}
+#panel{position:fixed;right:16px;bottom:84px;width:420px;max-width:calc(100% - 32px);max-height:33vh;display:flex;flex-direction:column;background:var(--sf);border:1.5px solid var(--pri);border-radius:16px;box-shadow:var(--sh);transform:translateY(130%);transition:transform .3s;z-index:20}
+#panel.on{transform:none}#panel.min .pb{display:none}.ph{display:flex;gap:8px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--ln)}.ph b{flex:1}
+.pb{overflow:auto;padding:12px 14px}.sec{font-weight:600;font-size:.86rem;margin:12px 0 6px}.sec:first-child{margin-top:0}
+.lb{border-radius:10px;padding:8px 10px;margin-bottom:6px;font-size:.88rem}.l0{background:var(--rs);color:var(--r);border:1px solid var(--r)}.l1{background:var(--ws);color:var(--w);border:1px solid var(--w)}.l2{background:var(--ps);color:var(--ink)}
+.lb i{font-style:normal;font-weight:600;display:block;font-size:.74rem}
+.card{border:1px solid var(--ln);border-radius:10px;padding:7px 10px;margin-bottom:6px}.card.m{background:var(--ws);border-color:var(--w)}.card.bad{background:var(--rs);border-color:var(--r)}
+.card summary{cursor:pointer;display:flex;gap:8px;font-weight:500;list-style:none}.card summary::-webkit-details-marker{display:none}.nm{flex:1}
+.tg{font-size:.72rem;font-weight:600;border-radius:99px;padding:1px 8px;background:var(--ps);color:var(--pri)}
+.card ul{margin:6px 0 0;padding-left:18px;font-size:.82rem;color:var(--mu)}.note{font-size:.8rem;color:var(--mu)}
+#toast{position:fixed;left:50%;top:14px;transform:translate(-50%,-160%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:12px;font-size:.88rem;max-width:calc(100% - 32px);z-index:30;transition:transform .25s}#toast.on{transform:translate(-50%,0)}
+@media(max-width:600px){#panel{right:0;left:0;bottom:64px;width:100%;max-width:100%;border-radius:16px 16px 0 0;max-height:33vh}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+body{padding-bottom:32px}
+main{max-width:920px;min-height:100vh;padding:24px 18px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
+.topbar .btn,.primary,.secondary,.danger,.location-button,.view-toggle{min-height:44px}
+.topbar .btn{font-size:.95rem}
+.page-heading{margin:0 0 6px;font-size:clamp(1.5rem,4vw,2rem)}
+.panel-box,.patient-card,.previous-card,.result-card,.setting-card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:18px;margin:16px 0}
+.form-row{display:grid;gap:7px;margin:12px 0}
+.form-row label{font-weight:600}
+input,select,textarea{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--ln);border-radius:9px;background:var(--sf);color:var(--ink);font:inherit}
+textarea{min-height:90px;resize:vertical}
+.primary,.secondary,.danger,.view-toggle{border:1px solid var(--ln);border-radius:9px;padding:9px 16px;background:var(--sf);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.primary{background:var(--pri);border-color:var(--pri);color:var(--pt)}
+.danger{border-color:var(--r);color:var(--r)}
+.primary:focus-visible,.secondary:focus-visible,.danger:focus-visible,.view-toggle:focus-visible,.location-button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+.muted{color:var(--mu);font-size:.9rem}
+.patient-form{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:10px}
+.patient-form .form-row{margin:0}
+.body-layout{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.2fr);gap:22px;align-items:start}
+.body-figure{display:block;width:min(100%,360px);height:auto;margin:8px auto}
+.body-figure [data-location]{cursor:pointer;outline:none}
+.body-figure [data-location] .hit{fill:var(--ps);stroke:var(--pri);stroke-width:2}
+.body-figure [data-location]:hover .hit,.body-figure [data-location]:focus .hit{fill:var(--pri);stroke-width:4}
+.body-figure [data-location]:hover .area-label,.body-figure [data-location]:focus .area-label{fill:var(--pt)}
+.body-figure .person{fill:var(--ln);stroke:var(--mu);stroke-width:2}
+.body-figure .area-label{fill:var(--ink);font:600 10px system-ui,sans-serif;pointer-events:none}
+.view-switch{display:flex;justify-content:center;gap:8px}
+.view-toggle[aria-pressed=true]{border-color:var(--pri);background:var(--ps)}
+.location-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.location-button{text-align:left;font:inherit;color:var(--ink);background:var(--sf);border:1.5px solid var(--ln);border-radius:9px;padding:9px 12px;cursor:pointer}
+.location-button:hover{border-color:var(--pri);background:var(--ps)}
+.location-button small{display:block;color:var(--mu)}
+.patient-history{margin-top:20px;padding-top:16px;border-top:1px solid var(--ln)}
+.patient-history ul,.result-list{padding-left:22px}
+.previous-card{border-left:4px solid var(--pri)}
+.previous-card h2,.panel-box h2,.result-card h2,.setting-card h2{margin:0 0 8px}
+.step-actions{position:sticky;bottom:0;display:flex;justify-content:space-between;gap:10px;padding:14px 0;background:var(--bg)}
+.step-actions .primary{min-width:min(100%,230px)}
+.result-summary{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.pill{display:inline-flex;align-items:center;min-height:32px;padding:4px 10px;border-radius:999px;background:var(--ps);font-size:.9rem}
+.recommendation{padding:12px;border:1px solid var(--ln);border-radius:10px;margin:8px 0}
+.recommendation.must{border-color:var(--w);background:var(--ws)}
+.recommendation.avoid{border-color:var(--r);background:var(--rs)}
+.recommendation h3{margin:0 0 4px;font-size:1rem}
+.recommendation p,.recommendation ul{margin:6px 0 0}
+.recommendation ul{padding-left:22px}
+.dispense-option{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:8px}
+.dispense-toggle{min-height:44px;padding:8px 12px;border:1px solid var(--pri);border-radius:9px;background:var(--sf);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.dispense-toggle[aria-pressed=true]{background:var(--ps);box-shadow:inset 0 0 0 1px var(--pri)}
+.dispense-toggle:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+.dispensed-list{padding:12px 14px}
+.dispensed-list h2{margin:0 0 6px;font-size:1rem}
+.history-entry{padding:12px 0;border-top:1px solid var(--ln)}
+.disclaimer{padding:12px;border-radius:10px;background:var(--ws);color:var(--w);font-size:.88rem}
+@media(max-width:640px){.body-layout{grid-template-columns:1fr}.body-figure{width:min(100%,300px)}.patient-form{grid-template-columns:1fr}.location-list{grid-template-columns:1fr}.step-actions{position:sticky}.panel-box,.patient-card,.previous-card,.result-card,.setting-card{padding:15px}}
+
+.profile-option{display:flex;align-items:flex-start;gap:8px;margin:5px 0;font-size:.86rem;line-height:1.4}
+.profile-option input{width:18px;min-width:18px;height:18px;min-height:18px;margin:2px 0 0;accent-color:var(--pri)}
+.assessment-profile{padding:12px 14px;margin:12px 0}
+.assessment-profile h2{margin-bottom:6px}
+.assessment-profile .seg{margin-bottom:6px}
+.assessment-profile .chip{min-height:38px;padding:7px 10px;font-size:.88rem}
+.assessment-profile .profile-option{display:inline-flex;vertical-align:top;width:calc(50% - 8px);margin:4px 6px 4px 0}
+.step-actions{gap:8px;padding:8px 0}
+.step-actions .primary,.step-actions .secondary{min-width:0;min-height:40px;padding:7px 12px;font-size:.9rem}
+.step-actions .primary{max-width:220px}
+.previous-card{padding:11px 14px;margin:10px 0}
+.previous-card h2{font-size:.95rem;margin-bottom:4px}
+.previous-card p{margin:3px 0;font-size:.86rem}
+.score-detail{margin:8px 0 0;color:var(--mu);font-size:.84rem}
+.recommendation summary{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer}
+#panel{padding:0;overflow:hidden}
+#panel .ph{flex:0 0 auto}
+#panel .ph button{min-height:38px;padding:5px 10px;border:1px solid var(--ln);border-radius:8px;background:var(--sf);color:var(--ink);font:inherit;cursor:pointer}
+#panel .pb{padding:10px 14px}
+#panel .result-card{padding:0;border:0;margin:0}
+#panel .result-card>.disclaimer{display:none}
+#panel .result-card h2{font-size:.95rem;margin:10px 0 6px}
+#panel .result-card .recommendation{padding:8px 10px;margin:6px 0}
+#panel .result-card .recommendation ul{padding-left:20px}
+#panel .live-empty{margin:0;color:var(--mu);font-size:.88rem}
+@media(max-width:600px){
+  #panel{right:0;left:0;bottom:64px;width:100%;max-width:100%;max-height:33vh;border-radius:16px 16px 0 0}
+  .assessment-profile .profile-option{width:100%;margin-right:0}
+}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<div id="toast" role="status" aria-live="polite"></div>
+<aside id="panel" aria-label="ผลแนะนำแบบเรียลไทม์" aria-live="polite"></aside>
+<script>
+/* ===== DATA (แก้เนื้อหาที่นี่) ===== */
+const HOME_BUTTONS=[{id:"a0",label:"ประเมินแผล",sub:"ประเมินตำแหน่งและบันทึกข้อมูลแผล",route:"#/body"},{id:"s",label:"S",sub:"เร็วๆ นี้",route:"#/s"}];
+const STALL_WEEKS=4;
+const DR=["Gauze","Non-adherent contact layer","Silicone contact layer","Transparent film","Hydrogel","Hydrocolloid","Foam","Alginate","Hydrofiber","Superabsorbent pad","Silver","Cadexomer iodine","PHMB","Medical honey","DACC-coated","Activated charcoal","Collagen / matrix","NPWT"];
+const ID=["gauze","nonadh","sil","film","hgel","hcol","foam","alg","hfib","sap","ag","iod","phmb","honey","dacc","charc","coll","npwt"];
+/* ตารางคะแนน: 1 แถว = 1 dressing ตามลำดับ DR; 1 ตัวอักษร = 1 คอลัมน์; 0/1/2 = คะแนน, x = ห้ามใช้ (ตัดทิ้ง) */
+const M={
+T:["11001","10222","10222","10121","22111","11221","01212","x2101","x2101","01101","01100","12100","01100","22100","01100","00000","x0210","x0200"],
+I:["000","000","000","x0x","000","x0x","000","000","000","000","212","121","110","111","110","100","000","00x"],
+E:["1110","1211","1211","22xx","21 0x".replace(" ",""),"121x","x122","x022","x022","0012","0111","0122","0111","1111","0110","0000","0110","0012"],
+D:["1100","1002","1002","2000","1222","2000","2110","1220","1220","1100","1110","1100","1110","1111","1110","0000","0111","0210"],
+P:["010","122","122","x00","x11","x00","221","211","211","211","000","000","000","000","000","000","000","100"],
+S:["00","21","22","00","20","00","21","12","21","01","00","00","00","00","00","00","00","00"]};
+/* คำถาม: m=โหมดเลือก, mx=ตารางคะแนน, w=น้ำหนัก, df=ค่าเริ่มต้น, x=ตัวเลือกแบบ exclusive, f=แสดงเฉพาะโหมดติดตาม, o=[id,ป้าย,คำอธิบาย,คอลัมน์ในตาราง] */
+const Q=[
+{id:"eti",t:"0 สาเหตุ / ชนิดแผล",m:"single",df:"unk",o:[["abr","แผลถลอก"],["burn","ไฟไหม้ / น้ำร้อนลวก"],["tear","ผิวฉีกขาด (skin tear)"],["pres","แผลกดทับ"],["dm","แผลเบาหวาน"],["ven","หลอดเลือดดำ"],["art","หลอดเลือดแดง / ขาดเลือด"],["su1","แผลผ่าตัดเย็บปิด"],["su2","แผลผ่าตัดแยก / เปิดทิ้ง"],["unk","อื่นๆ / ไม่ทราบ"]]},
+{id:"tis",t:"1 ชนิดเนื้อเยื่อแผล",d:"เลือกได้หลายข้อ",m:"multi",mx:"T",w:1,df:"t_gen",x:"t_gen",o:[["t_nec","เนื้อตายแห้ง (Necrotic)","แข็ง แห้ง ดำ/น้ำตาลเข้ม",0],["t_slo","เนื้อตายเปียก (Slough)","เหนียว เหลือง/ขาว",1],["t_gra","แกรนูเลชัน (Granulation)","แดงสด เป็นเม็ดละเอียด",2],["t_epi","ผิวหนังใหม่ (Epithelialization)","ชมพูอ่อน คลุมจากขอบ",3],["t_gen","เนื้อเยื่อทั่วไป / ไม่ระบุ","ไม่แน่ใจ",4]]},
+{id:"inf",t:"2 ติดเชื้อ",d:"เลือกได้หลายข้อ",m:"multi",mx:"I",w:2,df:"i_no",x:"i_no",o:[["i_pus","มีหนอง / กลิ่นเหม็น","น้ำเหลืองขุ่น หรือกลิ่นผิดปกติ",0],["i_bio","สงสัย biofilm","slough กลับมาเร็ว แผลไม่คืบ",1],["i_cel","ติดเชื้อลุกลาม (Cellulitis)","บวม แดง ร้อน อาจมีไข้",2],["i_no","ไม่มีหนอง / ไม่พบสัญญาณติดเชื้อ","",-1]]},
+{id:"exu",t:"3 ปริมาณน้ำเหลือง",d:"เลือก 1 ข้อ",m:"single",mx:"E",w:1,o:[["e0","แห้ง / ไม่มี","",0],["e1","น้อย","",1],["e2","ปานกลาง","",2],["e3","มาก / ซึมทะลุบ่อย","",3]]},
+{id:"dep",t:"4 ความลึก / โพรง",d:"เลือกได้หลายข้อ",m:"multi",mx:"D",w:1,x:"d_sh",o:[["d_sh","ตื้น (partial thickness)","",0],["d_de","ลึก มีโพรง (dead space)","",1],["d_tu","Sinus / Tunnelling / Undermining","",2],["d_bo","เห็นกระดูก / เอ็น","",3]]},
+{id:"per",t:"5 ผิวรอบแผล",d:"เลือกได้หลายข้อ",m:"multi",mx:"P",w:1,df:"p_ok",x:"p_ok",o:[["p_ok","ผิวปกติ","",-1],["p_ma","เปื่อยยุ่ย (Maceration)","ขาวซีด ย่น เปียก",0],["p_fr","ผิวบอบบาง / เคยลอกจากกาว","",1],["p_de","ผิวอักเสบ / ผื่น / คัน","",2]]},
+{id:"edg",t:"ขอบแผล",d:"เลือกได้หลายข้อ",m:"multi",df:"g_no",x:"g_no",o:[["g_no","ปกติ","",-1],["g_ro","ขอบม้วน / แข็ง / หนังหนา","",-1]]},
+{id:"prg",t:"ผลเทียบครั้งก่อน",m:"single",f:1,o:[["f_ok","ดีขึ้น"],["f_sm","ไม่ดีขึ้น / เท่าเดิม"],["f_wo","แย่ลง (ใหญ่ขึ้น ลึกขึ้น สีเปลี่ยน)"]]},
+{id:"wks",t:"ระยะเวลาที่ดูแลมาแล้ว",m:"single",f:1,o:[["w_lt","น้อยกว่า "+STALL_WEEKS+" สัปดาห์"],["w_ge",STALL_WEEKS+" สัปดาห์ขึ้นไป"]]},
+{id:"sym",t:"7 อาการอื่น",d:"เลือกได้หลายข้อ",m:"multi",mx:"S",w:1,df:"s_no",x:"s_no",f:1,o:[["s_no","ไม่มีอาการ","",-1],["s_pa","ปวดมากตอนเปลี่ยน dressing","",0],["s_bl","เลือดออกง่าย / เลือดซึม","",1],["s_pc","ปวดเพิ่มขึ้น / ปวดตลอดเวลา","แค่แจ้งเตือน ไม่ให้คะแนน",-1]]}];
+const PROF=[["ischemia","สงสัยขาดเลือดที่แขนขา (เท้าเย็น ชีพจรคลำไม่ได้)"],["anticoag","ใช้ยาละลายลิ่มเลือด / ต้านเกล็ดเลือด"],["noIod","แพ้ไอโอดีน / โรคไทรอยด์ / ตั้งครรภ์ / ให้นม"],["noHoney","แพ้น้ำผึ้ง / ผลิตภัณฑ์จากผึ้ง"]];
+/* ===== STATE ===== */
+const S={visit:"first",prof:{},sel:{},min:false,patients:[],activePatientId:null,activeLocationId:null,bodyView:"front",draftNotes:"",draftSize:{length:"",width:"",depth:""},lastAssessmentId:null,pendingAssessment:null};
+Q.forEach(q=>S.sel[q.id]=q.df?[q.df]:[]);
+const L={};Q.forEach(q=>q.o.forEach(o=>L[o[0]]=o[1]));
+const has=id=>Object.values(S.sel).some(a=>a.includes(id));
+const vis=q=>!q.f||S.visit==="followup";
+/* ===== ENGINE ===== */
+function compute(){
+const labels=[],P=(l,t)=>labels.push([l,t]),sel=S.sel,fu=S.visit==="followup";
+const art=has("art")||S.prof.ischemia,dm=has("dm");
+const antimic=["ag","iod","phmb","honey","dacc"];
+/* ขั้น 0: ด่านความปลอดภัย / label (ใช้คำว่า "ส่งต่อ" เพราะร้านยาทำหัตถการไม่ได้) */
+if(has("i_cel"))P(0,"ติดเชื้อลุกลาม: ควรส่งพบแพทย์ (ต้องประเมินและอาจต้องยาปฏิชีวนะระบบร่างกาย) ร้านยาทำไม่ได้");
+if(has("i_bio"))P(1,"สงสัย biofilm: ต้อง debride แล้วปิดด้วยยาฆ่าเชื้อ (clean and cover) ควรส่งต่อเพื่อตัดแต่งแผล");
+if(has("i_pus"))P(1,"มีหนอง/กลิ่น: ตรวจอาการติดเชื้อรุนแรง/ไข้ และส่งต่อถ้าไม่ดีขึ้น");
+if(has("t_nec")&&(art||dm))P(1,"เนื้อตายแห้งในผู้ป่วยขาดเลือด/เบาหวาน: อย่าเติมความชื้นเองก่อนประเมินหลอดเลือด ควรส่งต่อ");
+if(has("d_bo"))P(0,"เห็นกระดูก/เอ็น: ควรส่งพบแพทย์เพื่อประเมินกระดูกอักเสบ (ร้านยาทำไม่ได้) ระหว่างรอให้รักษาความชุ่มชื้น");
+if(has("t_slo")&&has("d_bo"))P(2,"เนื้อสีเหลืองอาจไม่ใช่ slough (อาจเป็นไขมัน เอ็น หรือกระดูก) ตรวจให้แน่ใจ");
+if(has("d_tu"))P(2,"โพรง/อุโมงค์: ต้องวัดความลึกก่อนใส่ตัวอุด ใส่หลวมๆ จดจำนวนชิ้น และเอาออกให้ครบ");
+if(has("g_ro")){if(art)P(0,"ขอบม้วน + สงสัยขาดเลือด: ห้ามตัดแต่งแผลก่อนประเมินหลอดเลือด ควรส่งพบแพทย์/ศัลยแพทย์หลอดเลือด");
+else if(dm)P(1,"แผลเบาหวาน ขอบม้วน/หนังด้าน: sharp debridement เป็นมาตรฐาน ต้องประเมินหลอดเลือดก่อน ควรส่งต่อ (ร้านยาทำไม่ได้)");
+else P(1,"ขอบม้วน/แข็ง/หนา: ควรส่งต่อเพื่อตัดแต่งขอบแผล (ร้านยาทำไม่ได้) และทบทวนสาเหตุที่แผลไม่ลามเข้าหากัน")}
+if(has("art"))P(0,"แผลขาดเลือด: ควรส่งประเมินหลอดเลือด ห้ามใช้ compression ก่อนตรวจ ABI");
+if(has("burn"))P(1,"ไฟไหม้: ถ้าลึก กว้าง หรืออยู่ที่หน้า/มือ/เท้า/ข้อ ควรส่งศูนย์ไฟไหม้/แพทย์");
+if(has("dm"))P(1,"แผลเบาหวาน: sharp debridement เป็นมาตรฐาน ควรประเมินหลอดเลือดและ offloading dressing เติมความชื้น/ยาฆ่าเชื้อไม่ใช่ตัวช่วยให้แผลหาย");
+if(has("ven"))P(2,"หลอดเลือดดำ: compression เป็นหัวใจ (ตรวจ ABI ก่อน) แนวปฏิบัติบางฉบับไม่แนะนำ antimicrobial เฉพาะที่ ให้ทีมตัดสินใจ");
+if(has("pres"))P(2,"กดทับ: ลดแรงกด (offloading/ที่นอน) ไม่มี dressing ชนิดเดียวที่ดีกว่า");
+if(has("su1"))P(2,"แผลผ่าตัดเย็บปิด: film + pad ไม่เปิดก่อน 48 ชม. เว้นแต่เลือดออก/ซึมมาก");
+if(has("su2"))P(2,"แผลผ่าตัดเปิดทิ้ง: ไม่ใช้ moist cotton gauze/Eusol");
+if(has("p_de"))P(2,"ผิวอักเสบ/ผื่น: แยกติดเชื้อ (บวมแดงร้อน) กับแพ้กาว/ยา ถ้าไม่หายควรส่งแพทย์ (dressing แก้ไม่ได้)");
+if(has("p_ma"))P(2,"ผิวเปื่อย: หาสาเหตุที่น้ำเหลืองมาก และตัด dressing ไม่ให้เกินขอบแผล");
+if(fu){
+if(has("f_wo"))P(0,"แผลแย่ลง: ควรส่งพบแพทย์ทันที เพื่อตรวจติดเชื้อและการไหลเวียนเลือด (ร้านยาทำไม่ได้)");
+if(has("f_sm")&&has("w_ge"))P(1,"แผลหยุดหาย: ควรส่งต่อเพื่อทบทวนสาเหตุ (ขาดเลือด ติดเชื้อ/biofilm น้ำตาล โภชนาการ แรงกด) และพิจารณาการรักษาเสริม");
+if(has("f_sm")&&has("w_lt"))P(2,"ยังไม่ถึงรอบทบทวน: ตรวจว่าทำตามแนวปฏิบัติพื้นฐานครบ แล้วประเมินซ้ำ");
+if(has("f_ok"))P(2,"ดีขึ้น: คงแผนเดิม ประเมินซ้ำทุกครั้งที่เปลี่ยน dressing");
+if(has("s_pa"))P(2,"ลดปวด: ชุบ dressing ก่อนลอก ลอกช้าๆ เลือกชนิดไม่ติดแผล");
+if(has("s_bl")){P(1,"เลือดออกง่าย: ลอกเบาๆ ชุบน้ำเกลืออุ่นก่อน ถ้ากดแล้วเลือดไม่หยุด/พุ่ง ส่งพบแพทย์ทันที"+(S.prof.anticoag?" (ใช้ยาป้องกันลิ่มเลือด ตรวจสอบกับแพทย์ผู้สั่ง ห้ามหยุดยาเอง)":""));
+if(has("t_gra"))P(2,"เลือดออกง่ายจากเนื้อเปราะอาจสัมพันธ์กับเชื้อมาก พิจารณาตรวจการติดเชื้อ")}
+if(has("s_pc"))P(art?0:1,"ปวดเพิ่ม/ปวดตลอด: ต้องแยกสาเหตุ (ติดเชื้อ ขาดเลือด แผลหยุดหาย) ควรส่งต่อ"+(dm?" (ผู้ป่วยเบาหวานที่ไม่เจ็บ ไม่ได้แปลว่าปลอดภัย)":""))}
+/* ขั้น 1: ตัดทิ้ง */
+const veto={},hide={};const V=(i,r)=>(veto[i]=veto[i]||[]).push(r);
+if(has("art"))["hgel","honey"].forEach(i=>V(i,"แผลขาดเลือด: ห้ามเติมความชื้น/autolytic"));
+if(has("tear"))["film","hcol","iod","gauze"].forEach(i=>V(i,"ผิวฉีกขาด: กาวแรง/ทำให้ผิวแห้ง/ติดแผล"));
+if(has("su2"))V("gauze","แผลผ่าตัดเปิดทิ้ง: ไม่ใช้ moist gauze");
+if(S.prof.noIod)V("iod","ข้อจำกัดผู้ป่วย: ไอโอดีน");if(S.prof.noHoney)V("honey","ข้อจำกัดผู้ป่วย: น้ำผึ้ง");
+const noInf=!has("i_pus")&&!has("i_bio")&&!has("i_cel");
+if(noInf&&!has("burn"))["ag","phmb","dacc"].forEach(i=>hide[i]=1);
+/* ขั้น 2-3: รวมคะแนน (ข้อที่เลือกหลายช่อง ใช้ค่า max ต่อข้อ) */
+const rows=ID.map((id,i)=>{let tot=0,why=[],inf=0,exu=0,vr=veto[id]?veto[id].slice():[];
+Q.forEach(q=>{if(!q.mx||!vis(q))return;const sc=sel[q.id].map(oid=>q.o.find(o=>o[0]===oid)).filter(o=>o&&o[3]>=0);if(!sc.length)return;
+let best=0,bo="";sc.forEach(o=>{const c=M[q.mx][i][o[3]];if(c==="x")vr.push(q.t+": "+o[1]);else if(+c>best){best=+c;bo=o[1]}});
+if(best){tot+=best*q.w;why.push(q.t+" / "+bo+" (+"+best*q.w+")");if(q.id==="inf")inf=best;if(q.id==="exu")exu=best}});
+return{i,id,tot,why,inf,exu,vr}});
+let ok=rows.filter(r=>!r.vr.length&&!hide[r.id]&&r.tot>0).sort((a,b)=>b.tot-a.tot||b.inf-a.inf||b.exu-a.exu||a.i-b.i);
+const max=ok.length?ok[0].tot:0;
+const urgent=labels.some(l=>l[0]===0);
+if(urgent)ok=ok.slice(0,3);else ok=ok.slice(0,7);
+const bad=rows.filter(r=>r.vr.length);
+labels.sort((a,b)=>a[0]-b[0]);
+return{labels,ok,max,bad,urgent,noInf,hide}}
+</script>
+<script>
+const app=document.getElementById("app");
+const toastElement=document.getElementById("toast");
+const BODY_LOCATIONS=[
+  {id:"right-arm",label:"แขนขวา",view:"front"},
+  {id:"left-arm",label:"แขนซ้าย",view:"front"},
+  {id:"chest",label:"หน้าอก",view:"front"},
+  {id:"waist",label:"เอว",view:"front"},
+  {id:"right-leg",label:"ขาขวา",view:"front"},
+  {id:"left-leg",label:"ขาซ้าย",view:"front"},
+  {id:"buttocks",label:"บั้นท้าย",view:"back"}
+];
+let toastTimer;
+let nextPatientId=1;
+let nextAssessmentId=1;
+
+function showToast(message){
+  toastElement.textContent=message;
+  toastElement.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toastElement.classList.remove("on"),2200);
+}
+
+function activePatient(){
+  return S.patients.find(patient=>patient.id===S.activePatientId)||null;
+}
+
+function locationLabel(locationId){
+  return BODY_LOCATIONS.find(location=>location.id===locationId)?.label||"ไม่ระบุตำแหน่ง";
+}
+
+function latestAssessment(patient,locationId){
+  return patient?.assessments
+    .filter(assessment=>assessment.locationId===locationId)
+    .sort((a,b)=>b.timestamp.localeCompare(a.timestamp))[0]||null;
+}
+
+function copySelection(selection){
+  return Object.fromEntries(Object.entries(selection).map(([id,values])=>[id,[...values]]));
+}
+
+function copyResult(result){
+  return {
+    labels:result.labels.map(label=>[...label]),
+    ok:result.ok.map(item=>({...item,why:[...item.why],vr:[...item.vr]})),
+    max:result.max,
+    bad:result.bad.map(item=>({...item,why:[...item.why],vr:[...item.vr]})),
+    urgent:result.urgent,
+    noInf:result.noInf,
+    hide:{...result.hide}
+  };
+}
+
+function hasMeaningfulAssessmentInput(){
+  return S.visit==="followup"||
+    Object.values(S.prof).some(Boolean)||
+    Q.some(question=>{
+      const current=S.sel[question.id]||[];
+      if(!current.length) return false;
+      if(!question.df) return true;
+      return current.length!==1||current[0]!==question.df;
+    });
+}
+
+function renderLivePanel(){
+  const panel=document.getElementById("panel");
+  if(!panel) return;
+  const onAssessment=location.hash==="#/assessment";
+  const hasInput=hasMeaningfulAssessmentInput();
+  const isVisible=onAssessment&&hasInput;
+  panel.classList.toggle("on",isVisible);
+  panel.classList.toggle("min",S.min);
+  panel.setAttribute("aria-hidden",String(!isVisible));
+  if(!isVisible){
+    panel.replaceChildren();
+    return;
+  }
+
+  const header=document.createElement("div");
+  header.className="ph";
+  const title=document.createElement("b");
+  title.textContent="ผลแนะนำ (เรียลไทม์)";
+  const minimize=document.createElement("button");
+  minimize.type="button";
+  minimize.setAttribute("aria-expanded",String(!S.min));
+  minimize.textContent=S.min?"ขยาย":"ย่อ";
+  minimize.addEventListener("click",()=>{
+    S.min=!S.min;
+    panel.classList.toggle("min",S.min);
+    minimize.setAttribute("aria-expanded",String(!S.min));
+    minimize.textContent=S.min?"ขยาย":"ย่อ";
+  });
+  header.append(title,minimize);
+
+  const content=document.createElement("div");
+  content.className="pb";
+  const resultCard=document.createElement("section");
+  resultCard.className="result-card";
+  renderResultContent(resultCard,compute(),{guidanceAtBottom:true});
+  content.append(resultCard);
+  panel.replaceChildren(header,content);
+  panel.classList.toggle("min",S.min);
+}
+
+function go(route){
+  const currentRoute=route||location.hash||"#/";
+  if(currentRoute==="#/a1"){
+    location.hash="#/body";
+    return;
+  }
+  window.scrollTo(0,0);
+  if(currentRoute!=="#/assessment"){
+    const panel=document.getElementById("panel");
+    panel?.classList.remove("on");
+    panel?.setAttribute("aria-hidden","true");
+    panel?.replaceChildren();
+  }
+  if(currentRoute==="#/") pageHome();
+  else if(currentRoute==="#/settings") pageSettings();
+  else if(currentRoute==="#/body") pageBody();
+  else if(currentRoute==="#/assessment") pageAssessment();
+  else if(currentRoute==="#/summary") pageSummary();
+  else if(currentRoute==="#/result") pageResult();
+  else if(currentRoute==="#/s") pageS();
+  else pageHome();
+}
+
+function topbar(title,backRoute="#/",showBack=true){
+  const bar=document.createElement("div");
+  bar.className="topbar";
+  const heading=document.createElement("strong");
+  heading.textContent=title;
+  const settings=document.createElement("button");
+  settings.type="button";
+  settings.className="btn";
+  if(title==="ตั้งค่า"){
+    settings.textContent="หน้าแรก";
+    settings.addEventListener("click",()=>location.hash="#/");
+  }else{
+    settings.textContent="ตั้งค่า";
+    settings.addEventListener("click",()=>location.hash="#/settings");
+  }
+  if(showBack){
+    const back=document.createElement("button");
+    back.type="button";
+    back.className="btn";
+    back.textContent="← กลับ";
+    back.addEventListener("click",()=>location.hash=backRoute);
+    bar.append(back);
+  }else{
+    const spacer=document.createElement("span");
+    spacer.setAttribute("aria-hidden","true");
+    bar.append(spacer);
+  }
+  bar.append(heading,settings);
+  return bar;
+}
+
+function pageHome(){
+  app.replaceChildren();
+  app.append(topbar("ตัวช่วยเลือก Dressing แผล","#/",false));
+  const heading=document.createElement("h1");
+  heading.className="page-heading";
+  heading.textContent="ตัวช่วยเลือก Dressing แผล";
+  const subtitle=document.createElement("p");
+  subtitle.className="sub";
+  subtitle.textContent="เลือกหมวดที่ต้องการ";
+  const home=document.createElement("div");
+  home.className="home";
+  HOME_BUTTONS.forEach(item=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="hb";
+    const label=document.createElement("b");
+    label.textContent=item.label;
+    const sub=document.createElement("span");
+    sub.textContent=item.sub;
+    button.append(label,sub);
+    button.addEventListener("click",()=>location.hash=item.route);
+    home.append(button);
+  });
+  app.append(heading,subtitle,home);
+}
+
+function pageSettings(){
+  app.replaceChildren();
+  app.append(topbar("ตั้งค่า"));
+  const heading=document.createElement("h1");
+  heading.className="page-heading";
+  heading.textContent="ตั้งค่าและข้อมูลในเครื่อง";
+  const privacy=document.createElement("section");
+  privacy.className="setting-card";
+  const privacyHeading=document.createElement("h2");
+  privacyHeading.textContent="การจัดเก็บข้อมูล";
+  const privacyText=document.createElement("p");
+  privacyText.className="muted";
+  privacyText.textContent="ชื่อคนไข้และประวัติการประเมินจะอยู่ในหน่วยความจำของหน้านี้เท่านั้น ไม่มีการส่งออกไปที่อื่น และจะหายเมื่อรีเฟรชหรือปิดหน้าเว็บ";
+  privacy.append(privacyHeading,privacyText);
+
+  const patients=document.createElement("section");
+  patients.className="setting-card";
+  const patientHeading=document.createElement("h2");
+  patientHeading.textContent=`ผู้ป่วยในเซสชันนี้ (${S.patients.length})`;
+  patients.append(patientHeading);
+  if(S.patients.length){
+    const list=document.createElement("ul");
+    S.patients.forEach(patient=>{
+      const item=document.createElement("li");
+      item.textContent=`${patient.name} — ${patient.assessments.length} ครั้ง`;
+      list.append(item);
+    });
+    patients.append(list);
+    const clear=document.createElement("button");
+    clear.type="button";
+    clear.className="danger";
+    clear.textContent="ลบข้อมูลผู้ป่วยจากเซสชันนี้";
+    clear.addEventListener("click",()=>{
+      if(!window.confirm("ลบชื่อผู้ป่วยและประวัติทั้งหมดจากหน่วยความจำของหน้านี้หรือไม่?")) return;
+      S.patients.length=0;
+      S.activePatientId=null;
+      S.activeLocationId=null;
+      S.lastAssessmentId=null;
+      S.pendingAssessment=null;
+      S.prof={};
+      S.visit="first";
+      S.draftNotes="";
+      S.draftSize={length:"",width:"",depth:""};
+      Q.forEach(question=>S.sel[question.id]=question.df?[question.df]:[]);
+      showToast("ลบข้อมูลในหน่วยความจำแล้ว");
+      pageSettings();
+    });
+    patients.append(clear);
+  }else{
+    const empty=document.createElement("p");
+    empty.className="muted";
+    empty.textContent="ยังไม่มีข้อมูลผู้ป่วยในเซสชันนี้";
+    patients.append(empty);
+  }
+  const note=document.createElement("p");
+  note.className="disclaimer";
+  note.textContent="ต้นแบบนี้เป็นเครื่องมือช่วยรวบรวมข้อมูล ไม่ใช่การวินิจฉัยหรือคำสั่งรักษา ควรให้บุคลากรทางการแพทย์ตรวจสอบคำแนะนำก่อนนำไปใช้จริง";
+  app.append(heading,privacy,patients,note);
+}
+
+function patientSelector(){
+  const section=document.createElement("section");
+  section.className="patient-card";
+  const heading=document.createElement("h2");
+  heading.textContent="ข้อมูลผู้ป่วย";
+  const help=document.createElement("p");
+  help.className="muted";
+  help.textContent="กรอกชื่อเพื่อเริ่มติดตาม หรือเลือกชื่อที่ใช้แล้วในเซสชันนี้";
+  const form=document.createElement("div");
+  form.className="patient-form";
+  const nameRow=document.createElement("div");
+  nameRow.className="form-row";
+  const nameLabel=document.createElement("label");
+  nameLabel.htmlFor="patient-name";
+  nameLabel.textContent="ชื่อผู้ป่วย";
+  const nameInput=document.createElement("input");
+  nameInput.id="patient-name";
+  nameInput.autocomplete="off";
+  nameInput.placeholder="กรอกชื่อหรือรหัสที่ใช้ระบุตัวผู้ป่วย";
+  nameInput.value=activePatient()?.name||"";
+  nameRow.append(nameLabel,nameInput);
+
+  const selectRow=document.createElement("div");
+  selectRow.className="form-row";
+  const select=document.createElement("select");
+  select.setAttribute("aria-label","เลือกผู้ป่วยที่มีในเซสชัน");
+  const placeholder=document.createElement("option");
+  placeholder.value="";
+  placeholder.textContent="เลือกผู้ป่วยเดิม";
+  select.append(placeholder);
+  S.patients.forEach(patient=>{
+    const option=document.createElement("option");
+    option.value=patient.id;
+    option.textContent=`${patient.name} (${patient.assessments.length} ครั้ง)`;
+    option.selected=patient.id===S.activePatientId;
+    select.append(option);
+  });
+  select.addEventListener("change",()=>{
+    const patient=S.patients.find(item=>item.id===select.value);
+    if(patient) nameInput.value=patient.name;
+  });
+  selectRow.append(select);
+
+  const start=document.createElement("button");
+  start.type="button";
+  start.className="primary";
+  start.textContent="บันทึกชื่อและเลือกตำแหน่ง";
+  start.addEventListener("click",()=>{
+    const name=nameInput.value.trim();
+    if(!name){
+      nameInput.setCustomValidity("กรุณากรอกชื่อหรือรหัสผู้ป่วย");
+      nameInput.reportValidity();
+      return;
+    }
+    nameInput.setCustomValidity("");
+    let patient=S.patients.find(item=>item.name.trim().toLocaleLowerCase()===name.toLocaleLowerCase());
+    if(!patient){
+      patient={id:`patient-${nextPatientId++}`,name,assessments:[]};
+      S.patients.push(patient);
+    }
+    S.activePatientId=patient.id;
+    renderBodyPage();
+    showToast(`เลือกผู้ป่วย ${patient.name} แล้ว`);
+  });
+  form.append(nameRow,selectRow,start);
+  section.append(heading,help,form);
+  return section;
+}
+
+function bodyMap(view){
+  const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");
+  svg.setAttribute("viewBox","0 0 300 340");
+  svg.setAttribute("class","body-figure");
+  svg.setAttribute("role","img");
+  svg.setAttribute("aria-label",view==="front"?"ภาพเลือกตำแหน่งด้านหน้า":"ภาพเลือกตำแหน่งด้านหลัง");
+  const shape=view==="front"
+    ? `<circle class="person" cx="150" cy="35" r="23"/><path class="person" d="M130 64 Q150 55 170 64 L190 145 L177 178 L173 208 L184 310 L157 310 L150 220 L143 310 L116 310 L127 208 L123 178 L110 145 Z"/><path class="person" d="M116 75 L88 88 L58 162 L74 170 L110 123 M184 75 L212 88 L242 162 L226 170 L190 123" fill="none" stroke="var(--mu)" stroke-width="18" stroke-linecap="round"/>`
+    : `<circle class="person" cx="150" cy="35" r="23"/><path class="person" d="M130 64 Q150 55 170 64 L190 145 L177 178 L173 208 L184 310 L157 310 L150 220 L143 310 L116 310 L127 208 L123 178 L110 145 Z"/><path class="person" d="M116 75 L88 88 L58 162 L74 170 L110 123 M184 75 L212 88 L242 162 L226 170 L190 123" fill="none" stroke="var(--mu)" stroke-width="18" stroke-linecap="round"/>`;
+  svg.innerHTML=shape;
+  const zones=view==="front"
+    ? [
+      ["right-arm",68,104,35,50,"แขนขวา"],
+      ["left-arm",197,104,35,50,"แขนซ้าย"],
+      ["chest",126,77,48,38,"หน้าอก"],
+      ["waist",126,121,48,34,"เอว"],
+      ["right-leg",116,202,25,72,"ขาขวา"],
+      ["left-leg",159,202,25,72,"ขาซ้าย"]
+    ]
+    : [
+      ["right-arm",68,104,35,50,"แขนขวา"],
+      ["left-arm",197,104,35,50,"แขนซ้าย"],
+      ["buttocks",125,135,50,42,"บั้นท้าย"],
+      ["right-leg",116,202,25,72,"ขาขวา"],
+      ["left-leg",159,202,25,72,"ขาซ้าย"]
+    ];
+  zones.forEach(([id,x,y,w,h,label])=>{
+    const group=document.createElementNS("http://www.w3.org/2000/svg","g");
+    group.dataset.location=id;
+    group.setAttribute("role","button");
+    group.setAttribute("tabindex","0");
+    group.setAttribute("aria-label",label);
+    const rect=document.createElementNS("http://www.w3.org/2000/svg","rect");
+    rect.setAttribute("class","hit");
+    rect.setAttribute("x",x);rect.setAttribute("y",y);rect.setAttribute("width",w);rect.setAttribute("height",h);
+    rect.setAttribute("rx","9");
+    const text=document.createElementNS("http://www.w3.org/2000/svg","text");
+    text.setAttribute("class","area-label");
+    text.setAttribute("x",Number(x)+Number(w)/2);
+    text.setAttribute("y",Number(y)+Number(h)/2+3);
+    text.setAttribute("text-anchor","middle");
+    text.textContent=label;
+    group.append(rect,text);
+    const activate=()=>openLocation(id);
+    group.addEventListener("click",activate);
+    group.addEventListener("keydown",event=>{
+      if(event.key==="Enter"||event.key===" "){event.preventDefault();activate()}
+    });
+    svg.append(group);
+  });
+  return svg;
+}
+
+function resetAssessmentDraft(locationId){
+  S.activeLocationId=locationId;
+  S.pendingAssessment=null;
+  Q.forEach(question=>S.sel[question.id]=question.df?[question.df]:[]);
+  S.prof={};
+  S.draftNotes="";
+  S.draftSize={length:"",width:"",depth:""};
+  const previous=latestAssessment(activePatient(),locationId);
+  S.visit=previous?"followup":"first";
+  S.lastAssessmentId=null;
+}
+
+function openLocation(locationId){
+  if(!activePatient()){
+    showToast("กรุณาเลือกหรือกรอกชื่อผู้ป่วยก่อน");
+    document.getElementById("patient-name")?.focus();
+    return;
+  }
+  resetAssessmentDraft(locationId);
+  location.hash="#/assessment";
+}
+
+function renderBodyPage(){
+  app.replaceChildren();
+  app.append(topbar("เลือกตำแหน่งแผล"));
+  const heading=document.createElement("h1");
+  heading.className="page-heading";
+  heading.textContent="เลือกตำแหน่งที่ต้องการประเมิน";
+  const hint=document.createElement("p");
+  hint.className="sub";
+  hint.textContent="เลือกตำแหน่งบนภาพ หรือเลือกจากรายการด้านล่าง";
+  app.append(heading,hint,patientSelector());
+  if(!activePatient()) return;
+
+  const layout=document.createElement("section");
+  layout.className="body-layout panel-box";
+  const figureArea=document.createElement("div");
+  const switcher=document.createElement("div");
+  switcher.className="view-switch";
+  ["front","back"].forEach(view=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="view-toggle";
+    button.setAttribute("aria-pressed",String(S.bodyView===view));
+    button.textContent=view==="front"?"ด้านหน้า":"ด้านหลัง";
+    button.addEventListener("click",()=>{S.bodyView=view;renderBodyPage()});
+    switcher.append(button);
+  });
+  figureArea.append(switcher,bodyMap(S.bodyView));
+
+  const optionsArea=document.createElement("div");
+  const patientHeading=document.createElement("h2");
+  patientHeading.textContent=`ผู้ป่วย: ${activePatient().name}`;
+  const optionsHeading=document.createElement("h2");
+  optionsHeading.textContent="ตำแหน่งแผล";
+  const list=document.createElement("div");
+  list.className="location-list";
+  BODY_LOCATIONS.forEach(location=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="location-button";
+    const label=document.createElement("span");
+    label.textContent=location.label;
+    const previous=latestAssessment(activePatient(),location.id);
+    const note=document.createElement("small");
+    note.textContent=previous?`ประเมินล่าสุด ${new Date(previous.timestamp).toLocaleDateString("th-TH")}`:"ยังไม่มีประวัติ";
+    button.append(label,note);
+    button.addEventListener("click",()=>openLocation(location.id));
+    list.append(button);
+  });
+  optionsArea.append(patientHeading,optionsHeading,list);
+  layout.append(figureArea,optionsArea);
+  app.append(layout);
+
+  if(activePatient().assessments.length){
+    const history=document.createElement("section");
+    history.className="patient-history";
+    const historyHeading=document.createElement("h2");
+    historyHeading.textContent="ประวัติการประเมิน";
+    const records=document.createElement("ul");
+    [...activePatient().assessments].reverse().forEach(assessment=>{
+      const item=document.createElement("li");
+      const button=document.createElement("button");
+      button.type="button";
+      button.className="secondary";
+      button.textContent=`${locationLabel(assessment.locationId)} — ${new Date(assessment.timestamp).toLocaleString("th-TH")}`;
+      button.addEventListener("click",()=>{S.lastAssessmentId=assessment.id;location.hash="#/result"});
+      item.append(button);
+      records.append(item);
+    });
+    history.append(historyHeading,records);
+    app.append(history);
+  }
+}
+
+function pageBody(){
+  renderBodyPage();
+}
+
+function previousDressingCard(patient,locationId){
+  const previous=latestAssessment(patient,locationId);
+  const card=document.createElement("section");
+  card.className="previous-card";
+  const heading=document.createElement("h2");
+  heading.textContent="ผล Dressing ครั้งก่อน";
+  card.append(heading);
+  const detail=document.createElement("p");
+  if(previous?.dispensedDressings?.length){
+    detail.textContent=previous.dispensedDressings.map(id=>DR[ID.indexOf(id)]).filter(Boolean).join(", ");
+  }else if(previous){
+    detail.textContent="ครั้งก่อนยังไม่มีข้อมูล Dressing ที่เลือกจ่าย";
+  }else{
+    detail.textContent="ยังไม่มีประวัติการประเมินตำแหน่งนี้";
+  }
+  card.append(detail);
+  if(previous){
+    const date=document.createElement("p");
+    date.className="muted";
+    date.textContent=`ประเมินเมื่อ ${new Date(previous.timestamp).toLocaleString("th-TH")}`;
+    card.append(date);
+  }
+  return card;
+}
+
+function pageAssessment(){
+  const patient=activePatient();
+  if(!patient||!S.activeLocationId){
+    location.hash="#/body";
+    return;
+  }
+  app.replaceChildren();
+  app.append(topbar("ประเมินแผล","#/body"));
+  const heading=document.createElement("h1");
+  heading.className="page-heading";
+  heading.textContent="ข้อมูลการประเมิน";
+  const identity=document.createElement("p");
+  identity.className="sub";
+  identity.textContent=`${patient.name} · ${locationLabel(S.activeLocationId)}`;
+  app.append(heading,identity,previousDressingCard(patient,S.activeLocationId));
+
+  const visitPanel=document.createElement("section");
+  visitPanel.className="panel-box assessment-profile";
+  const visitTitle=document.createElement("h2");
+  visitTitle.textContent="รอบการประเมิน";
+  const choices=document.createElement("div");
+  choices.className="seg";
+  [["first","ประเมินครั้งแรก"],["followup","ติดตามอาการ"]].forEach(([value,label])=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="chip";
+    button.setAttribute("aria-pressed",String(S.visit===value));
+    button.textContent=label;
+    button.addEventListener("click",()=>{
+      S.visit=value;
+      renderAssessmentPage();
+    });
+    choices.append(button);
+  });
+  visitPanel.append(visitTitle,choices);
+  PROF.forEach(([id,label])=>{
+    const row=document.createElement("label");
+    row.className="profile-option";
+    const checkbox=document.createElement("input");
+    checkbox.type="checkbox";
+    checkbox.checked=Boolean(S.prof[id]);
+    checkbox.addEventListener("change",()=>{
+      S.prof[id]=checkbox.checked;
+      renderLivePanel();
+    });
+    row.append(checkbox,document.createTextNode(label));
+    visitPanel.append(row);
+  });
+  app.append(visitPanel);
+
+  const questions=document.createElement("div");
+  questions.id="qs";
+  Q.filter(question=>!question.f||S.visit==="followup").forEach(question=>{
+    const fieldset=document.createElement("fieldset");
+    const legend=document.createElement("legend");
+    legend.textContent=question.t;
+    fieldset.append(legend);
+    if(question.d){
+      const description=document.createElement("div");
+      description.className="d";
+      description.textContent=question.d;
+      fieldset.append(description);
+    }
+    const grid=document.createElement("div");
+    grid.className="g";
+    question.o.forEach(option=>{
+      const button=document.createElement("button");
+      button.type="button";
+      button.className="chip";
+      button.id=`option-${option[0]}`;
+      button.dataset.o=option[0];
+      button.setAttribute("aria-pressed",String(S.sel[question.id].includes(option[0])));
+      const indicator=document.createElement("span");
+      indicator.className="bx";
+      indicator.textContent="✓";
+      const label=document.createElement("span");
+      label.append(document.createTextNode(option[1]));
+      if(option[2]){
+        const hint=document.createElement("small");
+        hint.textContent=option[2];
+        label.append(hint);
+      }
+      button.append(indicator,label);
+      button.addEventListener("click",()=>{
+        const id=option[0];
+        const selected=S.sel[question.id];
+        const turningOn=!selected.includes(id);
+        if(question.m==="single"){
+          S.sel[question.id]=turningOn?[id]:[];
+        }else if(turningOn){
+          S.sel[question.id]=id===question.x?[id]:selected.filter(value=>value!==question.x).concat(id);
+        }else{
+          S.sel[question.id]=selected.filter(value=>value!==id);
+        }
+        if(question.df&&!S.sel[question.id].length) S.sel[question.id]=[question.df];
+        renderAssessmentPage();
+        document.getElementById(`option-${id}`)?.focus();
+      });
+      grid.append(button);
+    });
+    fieldset.append(grid);
+    questions.append(fieldset);
+  });
+  app.append(questions);
+
+  const details=document.createElement("section");
+  details.className="panel-box";
+  const detailsHeading=document.createElement("h2");
+  detailsHeading.textContent="รายละเอียดแผลเพิ่มเติม";
+  details.append(detailsHeading);
+  const sizeGrid=document.createElement("div");
+  sizeGrid.className="location-list";
+  [["length","ยาว (ซม.)"],["width","กว้าง (ซม.)"],["depth","ลึก (ซม.)"]].forEach(([key,label])=>{
+    const wrapper=document.createElement("div");
+    wrapper.className="form-row";
+    const inputLabel=document.createElement("label");
+    inputLabel.textContent=label;
+    const input=document.createElement("input");
+    input.type="number";input.min="0";input.step="0.1";input.value=S.draftSize[key];
+    input.addEventListener("input",()=>S.draftSize[key]=input.value);
+    wrapper.append(inputLabel,input);
+    sizeGrid.append(wrapper);
+  });
+  const noteRow=document.createElement("div");
+  noteRow.className="form-row";
+  const noteLabel=document.createElement("label");
+  noteLabel.htmlFor="wound-notes";
+  noteLabel.textContent="บันทึกเพิ่มเติม";
+  const noteInput=document.createElement("textarea");
+  noteInput.id="wound-notes";
+  noteInput.value=S.draftNotes;
+  noteInput.addEventListener("input",()=>S.draftNotes=noteInput.value);
+  noteRow.append(noteLabel,noteInput);
+  details.append(sizeGrid,noteRow);
+  app.append(details);
+
+  const actions=document.createElement("div");
+  actions.className="step-actions";
+  const back=document.createElement("button");
+  back.type="button";back.className="secondary";back.textContent="กลับเลือกตำแหน่ง";
+  back.addEventListener("click",()=>location.hash="#/body");
+  const confirm=document.createElement("button");
+  confirm.type="button";confirm.className="primary";confirm.textContent="ส่งไปหน้าสรุปผล";
+  confirm.addEventListener("click",prepareAssessmentSummary);
+  actions.append(back,confirm);
+  app.append(actions);
+  renderLivePanel();
+}
+
+function renderAssessmentPage(){
+  pageAssessment();
+}
+
+function prepareAssessmentSummary(){
+  const patient=activePatient();
+  if(!patient||!S.activeLocationId) return;
+  S.pendingAssessment={
+    id:`draft-${nextAssessmentId}`,
+    locationId:S.activeLocationId,
+    timestamp:new Date().toISOString(),
+    visit:S.visit,
+    selection:copySelection(S.sel),
+    profile:{...S.prof},
+    size:{...S.draftSize},
+    notes:S.draftNotes,
+    result:copyResult(compute()),
+    dispensedDressings:[]
+  };
+  location.hash="#/summary";
+}
+
+function confirmSaveAssessment(){
+  const patient=activePatient();
+  if(!patient||!S.pendingAssessment) return;
+  const record={...S.pendingAssessment,dispensedDressings:[...S.pendingAssessment.dispensedDressings],id:`assessment-${nextAssessmentId++}`};
+  patient.assessments.push(record);
+  S.lastAssessmentId=record.id;
+  S.pendingAssessment=null;
+  location.hash="#/result";
+}
+
+function renderResultContent(container,result,{guidanceAtBottom=false,dispensedDressings=null,onDispensedChange=null}={}){
+  const safety=document.createElement("p");
+  safety.className="disclaimer";
+  safety.textContent="ผลนี้เป็นแนวทางอ้างอิงจากข้อมูลที่เลือก ไม่ใช่การวินิจฉัยหรือคำสั่งรักษา ต้องประเมินผู้ป่วยจริงและให้บุคลากรทางการแพทย์ทบทวน";
+  container.append(safety);
+
+  const appendGuidance=()=>{
+    const labelsHeading=document.createElement("h2");
+    labelsHeading.textContent="ข้อควรทำและข้อควรทราบ";
+    container.append(labelsHeading);
+    if(result.labels.length){
+      result.labels.forEach(([priority,text])=>{
+        const label=document.createElement("div");
+        label.className=`lb l${priority}`;
+        const badge=document.createElement("i");
+        badge.textContent=priority===0?"เร่งด่วน":priority===1?"เตือน":"ข้อมูล";
+        label.append(badge,document.createTextNode(text));
+        container.append(label);
+      });
+    }else{
+      const none=document.createElement("p");
+      none.className="muted";
+      none.textContent="ไม่มีคำเตือนเพิ่มเติมจากตัวเลือกนี้";
+      container.append(none);
+    }
+  };
+  if(!guidanceAtBottom) appendGuidance();
+
+  const recommendationsHeading=document.createElement("h2");
+  recommendationsHeading.textContent=result.urgent?"ดูแลเบื้องต้นระหว่างรอพบแพทย์":"Dressing ที่แนะนำ";
+  container.append(recommendationsHeading);
+  if(!result.ok.length){
+    const noResult=document.createElement("p");
+    noResult.className="muted";
+    noResult.textContent="ไม่มีตัวเลือกที่ผ่านเงื่อนไข ควรปรึกษาผู้เชี่ยวชาญ";
+    container.append(noResult);
+  }
+  const dispensedIds=dispensedDressings||[];
+  result.ok.forEach((item,index)=>{
+    const recommendation=document.createElement("details");
+    recommendation.className=`recommendation${item.id==="ag"&&!result.noInf&&index===0?" must":""}`;
+    const summary=document.createElement("summary");
+    const name=document.createElement("strong");
+    name.textContent=DR[item.i];
+    const score=document.createElement("span");
+    score.className="pill";
+    score.textContent=item.id==="ag"&&!result.noInf&&index===0
+      ?"ควรมี"
+      :item.tot>=result.max*.8?"แนะนำ":"ใช้ได้";
+    summary.append(name,score);
+    recommendation.append(summary);
+    const scoreDetail=document.createElement("p");
+    scoreDetail.className="score-detail";
+    scoreDetail.textContent=`คะแนน: ${item.tot}`;
+    recommendation.append(scoreDetail);
+    const reasons=document.createElement("ul");
+    item.why.forEach(reason=>{
+      const li=document.createElement("li");
+      li.textContent=reason;
+      reasons.append(li);
+    });
+    recommendation.append(reasons);
+    if(onDispensedChange){
+      const option=document.createElement("div");
+      option.className="dispense-option";
+      const button=document.createElement("button");
+      button.type="button";
+      button.className="dispense-toggle";
+      const updateButton=()=>{
+        const selected=dispensedIds.includes(item.id);
+        button.setAttribute("aria-pressed",String(selected));
+        button.textContent=selected?"เลือกจ่ายแล้ว ✓":"เลือกจ่าย";
+      };
+      button.addEventListener("click",()=>{
+        const selected=dispensedIds.includes(item.id);
+        if(selected) dispensedIds.splice(dispensedIds.indexOf(item.id),1);
+        else dispensedIds.push(item.id);
+        updateButton();
+        onDispensedChange(dispensedIds);
+      });
+      updateButton();
+      option.append(recommendation,button);
+      container.append(option);
+    }else{
+      container.append(recommendation);
+    }
+  });
+
+  if(result.bad.length){
+    const avoidHeading=document.createElement("h2");
+    avoidHeading.textContent="ควรหลีกเลี่ยง";
+    container.append(avoidHeading);
+    result.bad.forEach(item=>{
+      const avoid=document.createElement("details");
+      avoid.className="recommendation avoid";
+      const summary=document.createElement("summary");
+      summary.textContent=DR[item.i];
+      avoid.append(summary);
+      const reasons=document.createElement("ul");
+      item.vr.forEach(reason=>{
+        const li=document.createElement("li");
+        li.textContent=reason;
+        reasons.append(li);
+      });
+      avoid.append(reasons);
+      container.append(avoid);
+    });
+  }
+  if(result.ok.some(item=>["ag","iod","phmb","honey","dacc"].includes(item.id))){
+    const antimicrobialNote=document.createElement("p");
+    antimicrobialNote.className="muted";
+    antimicrobialNote.textContent="ยาฆ่าเชื้อ: ทบทวนที่ 2 สัปดาห์ ไม่ใช้ต่อเกิน 4 สัปดาห์โดยไม่มีเหตุ";
+    container.append(antimicrobialNote);
+  }
+  if(guidanceAtBottom) appendGuidance();
+}
+
+function renderAssessmentSummary(record,isPending){
+  const patient=activePatient();
+  app.replaceChildren();
+  app.append(topbar(isPending?"สรุปผลก่อนบันทึก":"ผลการประเมิน",isPending?"#/assessment":"#/body"));
+  const heading=document.createElement("h1");
+  heading.className="page-heading";
+  heading.textContent=isPending?"สรุปผลการประเมิน":"ผลและคำแนะนำ";
+  let instructions=null;
+  if(isPending){
+    instructions=document.createElement("p");
+    instructions.className="sub";
+    instructions.textContent="ตรวจทานข้อมูลและคำแนะนำก่อนยืนยันบันทึกประวัติ";
+  }
+  const summary=document.createElement("section");
+  summary.className="result-summary";
+  [patient.name,locationLabel(record.locationId),new Date(record.timestamp).toLocaleString("th-TH")].forEach(text=>{
+    const pill=document.createElement("span");pill.className="pill";pill.textContent=text;summary.append(pill);
+  });
+  const panel=document.createElement("section");
+  panel.className="result-card";
+  const dispensedSection=document.createElement("section");
+  dispensedSection.className="setting-card dispensed-list";
+  const dispensedHeading=document.createElement("h2");
+  dispensedHeading.textContent="รายการที่เภสัชกรเลือกจ่าย";
+  const dispensedItems=document.createElement("p");
+  dispensedItems.className="muted";
+  const updateDispensedItems=items=>{
+    dispensedItems.textContent=items.length
+      ?items.map(id=>DR[ID.indexOf(id)]).filter(Boolean).join(", ")
+      :"ยังไม่ได้เลือก Dressing ที่จ่าย";
+  };
+  updateDispensedItems(record.dispensedDressings||[]);
+  dispensedSection.append(dispensedHeading,dispensedItems);
+  renderResultContent(panel,record.result,{
+    dispensedDressings:isPending?record.dispensedDressings:null,
+    onDispensedChange:isPending?updateDispensedItems:null
+  });
+
+  const wound=document.createElement("section");
+  wound.className="setting-card";
+  const woundHeading=document.createElement("h2");
+  woundHeading.textContent="บันทึกแผล";
+  const measurements=document.createElement("p");
+  const size=record.size;
+  const sizeText=[size.length&&`ยาว ${size.length} ซม.`,size.width&&`กว้าง ${size.width} ซม.`,size.depth&&`ลึก ${size.depth} ซม.`].filter(Boolean).join(" · ");
+  measurements.textContent=sizeText||"ไม่ได้ระบุขนาด";
+  const notes=document.createElement("p");
+  notes.textContent=record.notes||"ไม่มีบันทึกเพิ่มเติม";
+  wound.append(woundHeading,measurements,notes);
+  const actions=document.createElement("div");
+  actions.className="step-actions";
+  const edit=document.createElement("button");
+  edit.type="button";edit.className="secondary";edit.textContent="กลับไปแก้ไข";
+  edit.addEventListener("click",()=>location.hash="#/assessment");
+  if(isPending){
+    const save=document.createElement("button");
+    save.type="button";save.className="primary";save.textContent="ยืนยันและบันทึกข้อมูล";
+    save.addEventListener("click",confirmSaveAssessment);
+    actions.append(edit,save);
+  }else{
+    const locations=document.createElement("button");
+    locations.type="button";locations.className="primary";locations.textContent="เลือกตำแหน่งอื่น";
+    locations.addEventListener("click",()=>location.hash="#/body");
+    actions.append(edit,locations);
+  }
+  app.append(heading);
+  if(instructions) app.append(instructions);
+  app.append(summary,panel,dispensedSection,wound,actions);
+}
+
+function pageSummary(){
+  const patient=activePatient();
+  if(!patient||!S.pendingAssessment){
+    location.hash="#/body";
+    return;
+  }
+  renderAssessmentSummary(S.pendingAssessment,true);
+}
+
+function pageResult(){
+  const patient=activePatient();
+  const record=patient?.assessments.find(item=>item.id===S.lastAssessmentId);
+  if(!patient||!record){
+    location.hash="#/body";
+    return;
+  }
+  renderAssessmentSummary(record,false);
+}
+
+function pageS(){
+  app.replaceChildren();
+  app.append(topbar("S"));
+  const heading=document.createElement("h1");
+  heading.className="page-heading";
+  heading.textContent="หน้านี้ยังไม่มีเนื้อหา";
+  const subtitle=document.createElement("p");
+  subtitle.className="sub";
+  subtitle.textContent="จะเพิ่มในขั้นตอนถัดไป";
+  app.append(heading,subtitle);
+}
+
+addEventListener("hashchange",()=>go());
+go();
+</script>
+</body>
+</html>
